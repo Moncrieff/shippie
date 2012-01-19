@@ -1,4 +1,6 @@
 Shippie::Application.routes.draw do
+  root :to => "deliveries#index"
+  resources :deliveries
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
