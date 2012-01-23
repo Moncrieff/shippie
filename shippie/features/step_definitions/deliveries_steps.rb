@@ -10,3 +10,7 @@ end
 Then /^I should see "([^"]*)"$/ do |message|
   page.should have_content(message)
 end
+
+Then /^I should be on the delivery page for newly created delivery$/ do 
+  current_path.should == delivery_path(Delivery.find_by_name!("Some stuff"))
+end
