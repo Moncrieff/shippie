@@ -21,4 +21,19 @@ class DeliveriesController < ApplicationController
   def show
     @delivery = Delivery.find(params[:id])
   end
+
+  def edit
+    @delivery = Delivery.find(params[:id])
+  end
+
+  def update
+    @delivery = Delivery.find(params[:id])
+    if @delivery.update_attributes(params[:delivery])
+       flash[:notice] = "Delivery has been updated."
+       redirect_to @delivery
+    else
+      flash[:alert] = "Delivery has not been updated."
+      render :action => "edit"
+    end
+  end
 end

@@ -27,3 +27,16 @@ end
 Then /^I should be on the delivery page for "([^"]*)"$/ do |page|
   current_path.should == delivery_path(Delivery.find_by_name!(page))
 end
+
+When /^I update delivery$/ do
+  click_link('Edit Delivery')
+  fill_in('Name', :with => "Some stuff beta")
+  click_button('Update Delivery')
+  page.should have_content('Delivery has been updated.')
+end
+
+When /^I update delivery with invalid attributes$/ do
+  click_link('Edit Delivery')
+  fill_in('Name', :with => "")
+  click_button('Update Delivery')
+end
