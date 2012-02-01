@@ -1,1 +1,7 @@
 <%= link_to "New delivery", new_delivery_path %>
+<h2>Deliveries</h2>
+<ul>
+  <% @deliveries.each do |delivery| %>
+    <li><%= link_to delivery.name, delivery %></li>
+  <% end %>
+</ul>

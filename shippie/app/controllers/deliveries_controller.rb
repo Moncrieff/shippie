@@ -1,6 +1,6 @@
 class DeliveriesController < ApplicationController
   def index
-    #
+    @deliveries = Delivery.all
   end
 
   def new
@@ -9,9 +9,13 @@ class DeliveriesController < ApplicationController
 
   def create
     @delivery = Delivery.new(params[:delivery])
-    @delivery.save
-    redirect_to @delivery,
-      :notice => "Delivery has been created."
+    if @delivery.save
+       flash[:notice] = "Delivery has been created."
+       redirect_to @delivery
+    else
+      flash[:alert] = "Delivery has not been created."
+      render :action => "new"
+    end
   end
 
   def show
