@@ -1,4 +1,9 @@
 class DeliveriesController < ApplicationController
+
+  before_filter :find_delivery, :only => [:show,
+                                          :edit,
+                                          :update,
+                                          :destroy]
   def index
     @deliveries = Delivery.all
   end
@@ -41,6 +46,16 @@ class DeliveriesController < ApplicationController
     @delivery = Delivery.find(params[:id])
     @delivery.destroy
     flash[:notice] = "Delivery has been deleted."
+    redirect_to deliveries_path
+  end
+
+  
+  private
+
+  def find_delivery
+    @delivery = Delivery.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The delivery you were looking for could not be found."
     redirect_to deliveries_path
   end
 end
