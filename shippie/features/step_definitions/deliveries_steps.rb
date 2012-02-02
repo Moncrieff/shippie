@@ -40,3 +40,12 @@ When /^I update delivery with invalid attributes$/ do
   fill_in('Name', :with => "")
   click_button('Update Delivery')
 end
+
+When /^I delete a delivery$/ do
+  click_link('Delete Delivery')
+  page.should have_content('Delivery has been deleted.')
+end
+
+Then /^I should not see "([^"]*)"$/ do |delivery|
+  page.should_not have_content(delivery)
+end

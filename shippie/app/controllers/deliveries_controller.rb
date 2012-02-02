@@ -36,4 +36,11 @@ class DeliveriesController < ApplicationController
       render :action => "edit"
     end
   end
+
+  def destroy
+    @delivery = Delivery.find(params[:id])
+    @delivery.destroy
+    flash[:notice] = "Delivery has been deleted."
+    redirect_to deliveries_path
+  end
 end
