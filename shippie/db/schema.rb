@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120116045203) do
+ActiveRecord::Schema.define(:version => 20120203033153) do
+
+  create_table "bids", :force => true do |t|
+    t.integer  "price"
+    t.integer  "delivery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bids", ["delivery_id"], :name => "index_bids_on_delivery_id"
 
   create_table "deliveries", :force => true do |t|
     t.string   "name"
