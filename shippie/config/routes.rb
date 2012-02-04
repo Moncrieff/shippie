@@ -1,4 +1,6 @@
 Shippie::Application.routes.draw do
+  devise_for :users
+
   root :to => "deliveries#index"
   resources :deliveries do
     resources :bids

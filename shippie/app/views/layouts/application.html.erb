@@ -14,7 +14,8 @@
   </div>
 <% end %>
 
-<h1><%= link_to "Home", root_path %></h1>
+<div id='nav'><%= link_to "Home", root_path %> |
+  <%= link_to "Sign up", new_user_registration_path %></div>
 <%= yield %>
 
 </body>
