@@ -21,7 +21,7 @@ When /^I create new delivery without a name$/ do
 end
 
 Given /^there is a delivery called "([^"]*)"$/ do |name|
-  Factory(:delivery, :name => name)
+  @delivery = Factory(:delivery, :name => name)
 end
 
 Then /^I should be on the delivery page for "([^"]*)"$/ do |page|
