@@ -15,7 +15,11 @@
 <% end %>
 
 <div id='nav'><%= link_to "Home", root_path %> |
-  <%= link_to "Sign up", new_user_registration_path %></div>
+  <% if user_signed_in? %>
+    Signed in as <%= current_user.email %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %>
+  <% end %></div>
 <%= yield %>
 
 </body>
