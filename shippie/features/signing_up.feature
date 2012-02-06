@@ -6,4 +6,4 @@ Feature: Signing up
   Scenario: Signing up
     Given I am on the homepage
     When I'm signing up
-    Then I should see "You have signed up successfully."
+    Then I should see "You have signed up successfully"

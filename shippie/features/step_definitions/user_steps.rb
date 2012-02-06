@@ -1,27 +1,46 @@
-When /^I'm signing up$/ do
-  click_link('Sign up')
-  fill_in('Email', :with => 'user@shippie.com')
-  fill_in('Password', :with => 'password')
-  fill_in('Password confirmation', :with => 'password')
+def unconfirmed_user
+  @unconfirmed_user = Factory(:user)
+end
+
+
+def sign_up user
+  visit '/users/sign_up'
+  fill_in('Email', :with => "unique@unique.com")
+  fill_in('Password', :with => user.password)
+  fill_in('Password confirmation', :with => user.password)
   click_button('Sign up')
 end
 
+def sign_in user
+  visit 'users/sign_in'
+  fill_in('Email', :with => user.email)
+  fill_in('Password', :with => user.password)
+  click_button('Sign in')
+end
+
+When /^I'm signing up$/ do
+  sign_up unconfirmed_user
+end
+
 Given /^there is an unconfirmed user$/ do
-  @user = Factory(:user)
+  unconfirmed_user
 end
 
 Given /^there is a confirmed user$/ do
-  @user = Factory(:user, :confirmed_at => '01/01/2012')
+  unconfirmed_user.confirm!
 end
 
 Then /^I should be registered and signed in$/ do
-  page.should have_content('Your account was successfully confirmed')
-  page.should have_content('Signed in as user@shippie.com')
+  page.should have_content("Signed in as #{unconfirmed_user.email}")
 end
 
 Given /^user signs in$/ do
-  click_link('Sign in')
-  fill_in('Email', :with => 'user@shippie.com')
-  fill_in('Password', :with => 'password')
-  click_button('Sign in')
+  sign_in unconfirmed_user.confirm!
+end
+
+When /^I open the email with subject "([^"]*?)"$/ do |subject|
+  open_email(@unconfirmed_user.email, :with_subject => subject)
+end
+
+Given /^I am logged in$/ do
 end

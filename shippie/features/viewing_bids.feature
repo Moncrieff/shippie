@@ -13,7 +13,9 @@ Feature: Viewing bids
   Scenario: Viewing bids for a given delivery
     When I follow "Furniture"
     Then I should see a bid with price 100
+    And I should see "by transporter@shippie.com"
 
     When I follow "Home"
     And I follow "Some stuff"
     Then I should see a bid with price 50
+    And I should see "by transporter2@shippie.com"

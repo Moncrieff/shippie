@@ -6,6 +6,7 @@ Feature: Creating bids
   Background:
     Given there is a delivery called "Furniture"
     And I am on the homepage
+    And I am not signed in
     When I follow "Furniture"
 
   Scenario: Creating a bid

@@ -77,11 +77,11 @@ When /^(?:I|they|"([^"]*?)") opens? the email$/ do |address|
   open_email(address)
 end
 
-When /^(?:I|they|"([^"]*?)") opens? the email with subject "([^"]*?)"$/ do |address, subject|
+When /^(?:they|"([^"]*?)") opens? the email with subject "([^"]*?)"$/ do |address, subject|
   open_email(address, :with_subject => subject)
 end
 
-When /^(?:I|they|"([^"]*?)") opens? the email with subject \/([^"]*?)\/$/ do |address, subject|
+When /^(?:they|"([^"]*?)") opens? the email with subject \/([^"]*?)\/$/ do |address, subject|
   open_email(address, :with_subject => Regexp.new(subject))
 end
 

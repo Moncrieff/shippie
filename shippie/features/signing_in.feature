@@ -5,7 +5,7 @@ Feature: Signing in
 
   Scenario: Signing in via confirmation
     Given there is an unconfirmed user
-    And "user@shippie.com" opens the email with subject "Confirmation instructions"
+    And I open the email with subject "Confirmation instructions"
     And they click the first link in the email
     Then I should be registered and signed in
 
