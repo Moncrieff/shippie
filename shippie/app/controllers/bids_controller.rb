@@ -4,6 +4,7 @@ class BidsController < ApplicationController
                                      :edit,
                                      :update,
                                      :destroy]
+  before_filter :authenticate_user!
   def new
     @bid = @delivery.bids.build
   end

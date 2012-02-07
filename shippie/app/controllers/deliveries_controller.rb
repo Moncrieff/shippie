@@ -4,6 +4,7 @@ class DeliveriesController < ApplicationController
                                           :edit,
                                           :update,
                                           :destroy]
+  before_filter :authenticate_user!, :except => [:index, :show]
   def index
     @deliveries = Delivery.all
   end

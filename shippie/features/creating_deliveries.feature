@@ -4,8 +4,12 @@ Feature: Creating deliveries
   I want to create them easily
 
   Background:
+    Given there is a confirmed user
     Given I am on the homepage
     When I follow "New delivery"
+    Then I should see "You need to sign in or sign up before continuing."
+    When I fill in my credentials
+    Then I should see "New Delivery"
 
   Scenario: Creating a delivery
     And I create new delivery
