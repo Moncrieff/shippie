@@ -1,5 +1,5 @@
 def unconfirmed_user
-  @unconfirmed_user = Factory(:user)
+  @user = Factory(:user)
 end
 
 def sign_up user
@@ -11,7 +11,7 @@ def sign_up user
 end
 
 def sign_in user
-  visit 'users/sign_in'
+  visit '/users/sign_in'
   fill_in('Email', :with => user.email)
   fill_in('Password', :with => user.password)
   click_button('Sign in')
@@ -30,24 +30,36 @@ Given /^there is a confirmed user$/ do
 end
 
 Then /^I should be registered and signed in$/ do
-  page.should have_content("Signed in as #{@unconfirmed_user.email}")
+  page.should have_content("Signed in as #{@user.email}")
 end
 
 Given /^user signs in$/ do
-  @unconfirmed_user.confirm!
-  sign_in @unconfirmed_user
+  @user.confirm!
+  sign_in @user
 end
 
 When /^I open the email with subject "([^"]*?)"$/ do |subject|
-  open_email(@unconfirmed_user.email, :with_subject => subject)
+  open_email(@user.email, :with_subject => subject)
 end
 
 When /^I sign out$/ do
-  visit 'users/sign_out'
+  click_link('Sign out')
 end
 
 When /^I fill in my credentials$/ do
-  fill_in('Email', :with => @unconfirmed_user.email)
-  fill_in('Password', :with => @unconfirmed_user.password)
+  fill_in('Email', :with => @user.email)
+  fill_in('Password', :with => @user.password)
   click_button('Sign in')
+end
+
+Then /^I should see a signed out message$/ do
+  page.should have_content('Signed out successfully')
+end
+
+When /^I return to the site$/ do
+  visit '/'
+end
+
+Then /^I should be signed out$/ do
+  page.should have_content('Sign in')
 end

@@ -15,7 +15,8 @@ Feature: Creating bids
 
   Scenario: Creating a bid
     When I create a bid
-    Then I should be on the delivery page for "Furniture"
+    Then I should see it was created by respective user
+    And I should be on the delivery page for "Furniture"
 
   Scenario: Creating a bid without valid attributes fails
     When I create a bid with invalid attributes

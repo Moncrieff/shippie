@@ -9,10 +9,14 @@ When /^I create a bid with invalid attributes$/ do
 end
 
 Given /^that delivery has a bid (\d+)$/ do |price|
-  @delivery.bids.create!(:price => price)
+  @delivery.bids.create!(:price => price, :user_id => @user.id)
 end
 
 Then /^I should see a bid with price (\d+)$/ do |price|
   page.should have_content(price)
   page.should_not have_content(321)
+end
+
+Then /^I should see it was created by respective user$/ do
+  page.should have_content("by #{@user.email}")
 end

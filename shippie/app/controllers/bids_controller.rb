@@ -10,7 +10,7 @@ class BidsController < ApplicationController
   end
 
   def create
-    @bid = @delivery.bids.build(params[:bid])
+    @bid = @delivery.bids.build(params[:bid].merge!(:user => current_user))
     if @bid.save
       flash[:notice] = "Bid has been created."
       redirect_to @delivery

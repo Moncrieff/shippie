@@ -5,8 +5,10 @@ Feature: Editing deliveries
 
   Background:
     Given there is a delivery called "Some stuff"
+    And there is a confirmed user
     And I am on the homepage
-    When I follow "Some stuff"
+    When user signs in
+    And I follow "Some stuff"
 
   Scenario: Updating a delivery
     And I update delivery

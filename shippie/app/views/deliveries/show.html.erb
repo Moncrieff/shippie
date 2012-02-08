@@ -7,7 +7,7 @@
 <ul id='bids'>
   <% @delivery.bids.each do |bid| %>
     <li>
-    <%= bid.price %>
+    <%= bid.price %><small> by <%= bid.user.email %></small>
     </li>
   <% end %>
 </ul>

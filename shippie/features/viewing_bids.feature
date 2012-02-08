@@ -4,7 +4,9 @@ Feature: Viewing bids
   I want to see them on that delivery page
 
   Background:
-    Given there is a delivery called "Furniture"
+    Given there is a confirmed user
+    And user signs in
+    And there is a delivery called "Furniture"
     And that delivery has a bid 100
     And there is a delivery called "Some stuff"
     And that delivery has a bid 50
@@ -13,9 +15,9 @@ Feature: Viewing bids
   Scenario: Viewing bids for a given delivery
     When I follow "Furniture"
     Then I should see a bid with price 100
-    And I should see "by transporter@shippie.com"
+    And I should see it was created by respective user
 
     When I follow "Home"
     And I follow "Some stuff"
     Then I should see a bid with price 50
-    And I should see "by transporter2@shippie.com"
+    And I should see it was created by respective user
