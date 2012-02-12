@@ -4,6 +4,16 @@ end
 
 When /^I create new delivery$/ do
   fill_in('Name', :with => "Some stuff")
+  fill_in('Weight', :with => "24")
+  fill_in('Length', :with => "120")
+  fill_in('Height', :with => "80")
+  fill_in('Wideness', :with => "20")
+  fill_in('From City', :with => "St. Petersburg")
+  fill_in('From Address', :with => "Malaya Morskaya, 23")
+  fill_in('To City', :with => "Akhtubinsk")
+  fill_in('To Address', :with => "Lenina, 12")
+  select_date('Deliver by:', :with => '22/05/2012')
+  fill_in('Description', :with => "One table with the books in it, very fragile")
   click_button('Create Delivery')
 end
 
@@ -48,4 +58,11 @@ end
 
 Then /^I should not see "([^"]*)"$/ do |delivery|
   page.should_not have_content(delivery)
+end
+
+Then /^I create new delivery without mandatory fields filled$/ do
+  fill_in('Name', :with => "Name")
+  fill_in('From', :with => "")
+  fill_in('To', :with => "")
+  click_button('Create Delivery')
 end

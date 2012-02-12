@@ -20,3 +20,7 @@ Feature: Creating deliveries
     And I create new delivery without a name
     Then I should see "Delivery has not been created."
     And I should see "Name can't be blank"
+  
+  Scenario: Creating a delivery without mandatory fields filled
+    And I create new delivery without mandatory fields filled
+    Then I should see "Delivery has not been created."

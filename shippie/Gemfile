@@ -34,6 +34,8 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.5'
 end
 
+gem 'annotate', '~> 2.4.0'
+
 group :test do
   gem 'cucumber-rails'
   gem 'capybara'

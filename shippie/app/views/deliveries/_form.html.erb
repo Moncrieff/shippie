@@ -3,6 +3,26 @@
   <%= f.error_messages %>
   <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= f.label :from_city, 'From City' %>
+  <%= f.text_field :from_city %>
+  <%= f.label :from_address, 'From Address' %>
+  <%= f.text_field :from_address %>
+  <%= f.label :to_city, 'To City' %>
+  <%= f.text_field :to_city %>
+  <%= f.label :to_address, 'To Address' %>
+  <%= f.text_field :to_address %>
+  <%= f.label :date, 'Deliver by:' %>
+  <%= f.date_select :date %>
+  <%= f.label :weight %>
+  <%= f.text_field :weight %>
+  <%= f.label :length %>
+  <%= f.text_field :length %>
+  <%= f.label :height %>
+  <%= f.text_field :height %>
+  <%= f.label :wideness %>
+  <%= f.text_field :wideness %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
   </p>
   <%= f.submit %>
 <% end %>
