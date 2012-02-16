@@ -1,7 +1,16 @@
 <%= link_to "New delivery", new_delivery_path %>
 <h2>Deliveries</h2>
-<ul>
+<tr>
+  <th>Delivery</th>
+  <th>From</th>
+  <th>To</th>
+  <th>Date due</th>
+  <th>Bids</th></br>
   <% @deliveries.each do |delivery| %>
-    <li><%= link_to delivery.name, delivery %></li>
+    <td><%= link_to delivery.name, delivery %></td>
+    <td><%= delivery.from_city %>, <%= delivery.from_address %></td>
+    <td><%= delivery.to_city %>, <%= delivery.to_address %></td>
+    <td><%= delivery.date %></td>
+    <td><%= link_to delivery.bids.count, delivery %></td></br>
   <% end %>
-</ul>
+</tr>

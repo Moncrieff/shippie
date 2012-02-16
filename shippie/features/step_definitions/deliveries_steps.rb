@@ -66,3 +66,17 @@ Then /^I create new delivery without mandatory fields filled$/ do
   fill_in('To', :with => "")
   click_button('Create Delivery')
 end
+
+Then /^I should see list of deliveries with fields$/ do
+  page.should have_content('From')
+  page.should have_content('To')
+  page.should have_content('Date due')
+  page.should have_content('Bids')
+  page.should have_content(@delivery.name)
+  page.should have_content(@delivery.from_city)
+  page.should have_content(@delivery.from_address)
+  page.should have_content(@delivery.to_city)
+  page.should have_content(@delivery.to_address)
+  page.should have_content(@delivery.date)
+  page.should have_content(@delivery.bids.count)
+end
