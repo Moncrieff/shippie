@@ -12,5 +12,6 @@ Feature: Viewing deliveries
     Then I should see list of deliveries with fields
 
   Scenario: Viewing a delivery
-    When I follow "Some stuff"
-    Then I should be on the delivery page for "Some stuff"
+    When I follow "Other delivery"
+    Then I should be on the delivery page for "Other delivery"
+    And I should see a "Other delivery" delivery info

@@ -1,3 +1,7 @@
+def good_delivery
+  @delivery = Factory(:delivery)
+end
+
 When /^I follow "([^"]*)"$/ do |link|
   click_link(link)
 end
@@ -31,6 +35,8 @@ When /^I create new delivery without a name$/ do
 end
 
 Given /^there is a delivery called "([^"]*)"$/ do |name|
+  #good_delivery
+  #@delivery.name = name
   @delivery = Factory(:delivery, :name => name)
 end
 
@@ -79,4 +85,22 @@ Then /^I should see list of deliveries with fields$/ do
   page.should have_content(@delivery.to_address)
   page.should have_content(@delivery.date)
   page.should have_content(@delivery.bids.count)
+end
+
+When /^there is an unexpired delivery$/ do
+  @delivery
+end
+
+When /^there is an expired delivery$/ do
+  @delivery.date = "01/01/2009"
+end
+
+Then /^I should see a "([^"]*)" delivery info$/ do |name|
+  page.should have_content(name)
+  page.should have_content("From city")
+  page.should have_content("From address")
+  page.should have_content("To city")
+  page.should have_content("To address")
+  page.should have_content("Date due")
+  page.should have_content("Bids")
 end

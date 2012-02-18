@@ -6,7 +6,7 @@ class DeliveriesController < ApplicationController
                                           :destroy]
   before_filter :authenticate_user!, :except => [:index, :show]
   def index
-    @deliveries = Delivery.all
+    @deliveries = Delivery.includes(:bids).all
   end
 
   def new
