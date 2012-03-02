@@ -16,7 +16,7 @@ class DeliveriesController < ApplicationController
   end
 
   def create
-    @delivery = Delivery.new(params[:delivery])
+    @delivery = Delivery.new(params[:delivery].merge!(:user_id => current_user.id))
     if @delivery.save
        flash[:notice] = "Delivery has been created."
        redirect_to @delivery
