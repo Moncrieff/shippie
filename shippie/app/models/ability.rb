@@ -11,6 +11,7 @@ class Ability
     if user.role? :customer
       can :read, :all
       can :update, Delivery, :user_id => user.id
+      can :create, Delivery
     end
   end
 end

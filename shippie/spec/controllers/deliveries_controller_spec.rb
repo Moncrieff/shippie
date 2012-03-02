@@ -24,6 +24,19 @@ describe DeliveriesController do
   end
 
   context "transporters" do
+
+    it "cannot begin to create new delivery" do
+      sign_in(:user, transporter)
+      get :new, :delivery_id => delivery.id
+      cannot_act_on_deliveries!
+    end
+
+    it "cannot create new delivery" do
+      sign_in(:user, transporter)
+      post :create, :delivery_id => delivery.id
+      cannot_act_on_deliveries!
+    end
+
     it "cannot access the edit action" do
       sign_in(:user, transporter)
       get :edit, :id => delivery.id

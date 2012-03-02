@@ -1,4 +1,7 @@
-<%= link_to "New delivery", new_delivery_path %>
+<% if current_user.try(:role) == "customer" %>
+  <%= link_to "New delivery", new_delivery_path %>
+<% end %>
+
 <h2>Deliveries</h2>
 <tr>
   <th>Delivery</th>

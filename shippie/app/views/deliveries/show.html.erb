@@ -1,5 +1,9 @@
 <h2><%= @delivery.name %></h2>
-<%= link_to "Edit Delivery", edit_delivery_path(@delivery) %>
+
+<% if can? :update, @delivery %>
+  <%= link_to "Edit Delivery", edit_delivery_path(@delivery) %>
+<% end %>
+
 <%= link_to "Delete Delivery", @delivery, :method => :delete,
   :confirm => "Are you sure you want to delete this delivery?" %>
 <%= link_to "New Bid", new_delivery_bid_path(@delivery) %>

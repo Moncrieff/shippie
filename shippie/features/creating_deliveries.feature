@@ -4,30 +4,34 @@ Feature: Creating deliveries
   I want to create them easily
 
   Background:
-    Given there is a "customer" user
-    Given I am on the homepage
-    When I follow "New delivery"
-    Then I should see "You need to sign in or sign up before continuing."
-    When I fill in my credentials
-    Then I should see "New Delivery"
+    Given there are the following users:
+      | email            | password | role     |
+      | user@shippie.com | password | customer |
+    And I am signed in as them
+    And I am on the homepage
 
   Scenario: Creating a delivery
+    When I follow "New delivery"
     And I create new delivery
     Then I should see "Delivery has been created."
     And I should be on the delivery page for newly created delivery
   
   Scenario: Creating a delivery without a name
+    When I follow "New delivery"
     And I create new delivery without a name
     Then I should see "Delivery has not been created."
     And I should see "Name can't be blank"
   
   Scenario: Creating a delivery without mandatory fields filled
+    When I follow "New delivery"
     And I create new delivery without mandatory fields filled
     Then I should see "Delivery has not been created."
 
-  Scenario: Transporter shouldn't be able to create deliveries
-    Given I sign out
-    And there is a "transporter" user
-    And user signs in
+  Scenario: New Delivery link should be invisible for transporters
+    When I sign out
+    And there are the following users:
+      | email                   | password | role        |
+      | transporter@shippie.com | password | transporter |
+    And I am signed in as them
     And I am on the homepage
     Then I should not see "New delivery"
