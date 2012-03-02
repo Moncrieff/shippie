@@ -35,8 +35,6 @@ When /^I create new delivery without a name$/ do
 end
 
 Given /^there is a delivery called "([^"]*)"$/ do |name|
-  #good_delivery
-  #@delivery.name = name
   @delivery = Factory(:delivery, :name => name)
 end
 
@@ -103,4 +101,18 @@ Then /^I should see a "([^"]*)" delivery info$/ do |name|
   page.should have_content("To address")
   page.should have_content("Date due")
   page.should have_content("Bids")
+end
+
+#Given /^"([^"]*)" can edit "([^"]*)" delivery$/ do |user, delivery|
+#  @user = User.find_by_email(user)
+#  @user.role = "customer"
+#  @delivery = Delivery.find_by_name(delivery)
+#  @ability = Ability.new(@user)
+#  @ability.can :update, @delivery
+#  @ability.can :read, :all
+#end
+
+Given /^there is a delivery "([^"]*)" created by "([^"]*)"$/ do |delivery, user|
+  @user = User.find_by_email(user)
+  @delivery = Factory(:delivery, :name => delivery, :user_id => @user.id)
 end

@@ -4,7 +4,7 @@ Feature: Creating deliveries
   I want to create them easily
 
   Background:
-    Given there is a confirmed user
+    Given there is a "customer" user
     Given I am on the homepage
     When I follow "New delivery"
     Then I should see "You need to sign in or sign up before continuing."
@@ -24,3 +24,10 @@ Feature: Creating deliveries
   Scenario: Creating a delivery without mandatory fields filled
     And I create new delivery without mandatory fields filled
     Then I should see "Delivery has not been created."
+
+  Scenario: Transporter shouldn't be able to create deliveries
+    Given I sign out
+    And there is a "transporter" user
+    And user signs in
+    And I am on the homepage
+    Then I should not see "New delivery"

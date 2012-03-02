@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210180838) do
+ActiveRecord::Schema.define(:version => 20120226134913) do
 
   create_table "bids", :force => true do |t|
     t.integer  "price"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20120210180838) do
     t.string   "to_address"
     t.date     "date"
     t.text     "description"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20120210180838) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -5,6 +5,8 @@ class DeliveriesController < ApplicationController
                                           :update,
                                           :destroy]
   before_filter :authenticate_user!, :except => [:index, :show]
+  load_and_authorize_resource :only => [:edit]
+
   def index
     @deliveries = Delivery.includes(:bids).all
   end
@@ -30,6 +32,12 @@ class DeliveriesController < ApplicationController
 
   def edit
     @delivery = Delivery.find(params[:id])
+#    if can? :update, @delivery
+#      authorized! 
+#    else
+#      flash[:alert] = "You can not edit this delivery."
+#      redirect_to deliveries_path
+#    end
   end
 
   def update

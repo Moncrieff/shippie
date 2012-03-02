@@ -5,4 +5,5 @@ class Delivery < ActiveRecord::Base
   validates :to_city, :presence => true
   validates :to_address, :presence => true
   has_many :bids, :dependent => :delete_all
+  belongs_to :user
 end

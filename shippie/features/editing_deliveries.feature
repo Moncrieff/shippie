@@ -4,10 +4,12 @@ Feature: Editing deliveries
   I want to be able to do that through the interface
 
   Background:
-    Given there is a delivery called "Some stuff"
-    And there is a confirmed user
+    Given there are the following users:
+      | email            | password | role     |
+      | user@shippie.com | password | customer |
+    And I am signed in as them
+    And there is a delivery "Some stuff" created by "user@shippie.com"
     And I am on the homepage
-    When user signs in
     And I follow "Some stuff"
 
   Scenario: Updating a delivery
