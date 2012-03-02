@@ -9,13 +9,19 @@ Feature: Editing deliveries
       | user@shippie.com | password | customer |
     And I am signed in as them
     And there is a delivery "Some stuff" created by "user@shippie.com"
+    And there is a delivery called "Another delivery"
     And I am on the homepage
-    And I follow "Some stuff"
 
   Scenario: Updating a delivery
+    And I follow "Some stuff"
     And I update delivery
     Then I should be on the delivery page for "Some stuff beta"
 
   Scenario: Updating a delivery with invalid attributes
+    And I follow "Some stuff"
     And I update delivery with invalid attributes
     Then I should see "Delivery has not been updated."
+
+  Scenario: Edit links for not owners
+    And I follow "Another delivery"
+    Then I should not see "Edit Delivery"
