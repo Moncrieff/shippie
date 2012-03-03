@@ -1,14 +1,5 @@
 def unconfirmed_user
-  @user = Factory(:user)
-end
-
-def sign_up user
-  visit '/users/sign_up'
-  fill_in('Email', :with => user.email)
-  fill_in('Password', :with => user.password)
-  fill_in('Password confirmation', :with => user.password)
-  select('I am a:', :with => user.role)
-  click_button('Sign up')
+  @user = Factory(:user, :email => "mister@shippie.com")
 end
 
 def sign_in user
@@ -26,19 +17,18 @@ Given /^there are the following users:$/ do |table|
   end
 end
 
-When /^I'm signing up$/ do
-  sign_up unconfirmed_user
+When /^I'm signing up as a "([^"]*)"$/ do |role|
+  visit '/users/sign_up'
+  fill_in('Email', :with => "new_email@shippie.com")
+  fill_in('Password', :with => "password")
+  fill_in('Password confirmation', :with => "password")
+  select(:user_role, :with => role)
+  click_button('Sign up')
 end
 
 Given /^there is an unconfirmed user$/ do
   unconfirmed_user
 end
-
-#Given /^there is a "([^"]*)" user$/ do |role|
-#  unconfirmed_user
-#  @user.create_role(:name => role)
-#  @user.confirm!
-#end
 
 Given /^there is a confirmed user$/ do
   unconfirmed_user.confirm!

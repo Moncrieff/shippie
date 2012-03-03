@@ -5,13 +5,12 @@ Feature: Signing up
 
   Background:
     Given I am on the homepage
+    When I follow "Sign up"
 
   Scenario: Signing up as a transporter
-    When I follow "Sign up as a transporter"
-    When I'm signing up
+    When I'm signing up as a "transporter"
     Then I should see "You have signed up successfully"
   
   Scenario: Signing up as a customer
-    When I follow "Sign up as a customer"
-    When I'm signing up
+    When I'm signing up as a "customer"
     Then I should see "You have signed up successfully"
