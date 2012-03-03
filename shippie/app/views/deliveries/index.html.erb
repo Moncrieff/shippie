@@ -1,4 +1,5 @@
-<% if current_user.try(:role) == "customer" %>
+<% #if current_user.try(:role) == "customer" %>
+<% if can? :create, Delivery %>
   <%= link_to "New delivery", new_delivery_path %>
 <% end %>
 

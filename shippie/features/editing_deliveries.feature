@@ -13,15 +13,15 @@ Feature: Editing deliveries
     And I am on the homepage
 
   Scenario: Updating a delivery
-    And I follow "Some stuff"
+    When I follow "Some stuff"
     And I update delivery
     Then I should be on the delivery page for "Some stuff beta"
 
   Scenario: Updating a delivery with invalid attributes
-    And I follow "Some stuff"
+    When I follow "Some stuff"
     And I update delivery with invalid attributes
     Then I should see "Delivery has not been updated."
 
   Scenario: Edit links for not owners
-    And I follow "Another delivery"
+    When I follow "Another delivery"
     Then I should not see "Edit Delivery"

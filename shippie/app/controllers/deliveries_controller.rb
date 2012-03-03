@@ -5,7 +5,7 @@ class DeliveriesController < ApplicationController
                                           :update,
                                           :destroy]
   before_filter :authenticate_user!, :except => [:index, :show]
-  load_and_authorize_resource :only => [:edit, :new, :create]
+  load_and_authorize_resource :only => [:edit, :new, :create, :destroy]
 
   def index
     @deliveries = Delivery.includes(:bids).all

@@ -5,12 +5,13 @@ class BidsController < ApplicationController
                                      :update,
                                      :destroy]
   before_filter :authenticate_user!
+  load_and_authorize_resource :only => [:new, :create]
   def new
     @bid = @delivery.bids.build
   end
 
   def create
-    @bid = @delivery.bids.build(params[:bid].merge!(:user => current_user))
+    @bid = @delivery.bids.build(params[:bid].try(:merge!, :user => current_user))
     if @bid.save
       flash[:notice] = "Bid has been created."
       redirect_to @delivery

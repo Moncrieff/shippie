@@ -18,6 +18,10 @@ describe DeliveriesController do
     delivery = Factory(:delivery)
   end
 
+  let(:bid) do
+    bid = Factory(:bid, :delivery_id => delivery.id, :user_id => transporter.id)
+  end
+
   def cannot_act_on_deliveries!
       response.should redirect_to(deliveries_path)
       flash[:alert].should eql("You are not authorized to access this page.")
@@ -42,12 +46,24 @@ describe DeliveriesController do
       get :edit, :id => delivery.id
       cannot_act_on_deliveries!
     end
+
+    it "cannot delete deliveries" do
+      sign_in(:user, transporter)
+      delete :destroy, :id => delivery.id
+      cannot_act_on_deliveries!
+    end
   end
 
   context "customers" do
     it "cannot access the edit action for other customer's delivery" do
       sign_in(:user, customer)
       get :edit, :id => delivery.id
+      cannot_act_on_deliveries!
+    end
+
+    it "cannot delete other customer's delivery" do
+      sign_in(:user, customer)
+      delete :destroy, :id => delivery.id
       cannot_act_on_deliveries!
     end
   end
