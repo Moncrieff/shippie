@@ -5,6 +5,10 @@ Shippie::Application.routes.draw do
   resources :deliveries do
     resources :bids
   end
+
+  resources :users
+
+  #resources :users
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

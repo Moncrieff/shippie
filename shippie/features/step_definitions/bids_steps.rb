@@ -20,3 +20,8 @@ end
 Then /^I should see it was created by respective user$/ do
   page.should have_content("by #{@user.email}")
 end
+
+Given /^there is a bid for "([^"]*)" created by "([^"]*)"$/ do |delivery, user|
+  @user = User.find_by_email(user)
+  @bid = Factory(:bid, :delivery_id => @delivery.id, :user_id => @user.id)
+end
