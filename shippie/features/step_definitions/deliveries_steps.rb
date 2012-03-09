@@ -85,12 +85,8 @@ Then /^I should see list of deliveries with fields$/ do
   page.should have_content(@delivery.bids.count)
 end
 
-When /^there is an unexpired delivery$/ do
-  @delivery
-end
-
-When /^there is an expired delivery$/ do
-  @delivery.date = "01/01/2009"
+Given /^there is a delivery called "([^"]*)" with expiration date "([^"]*)"$/ do |name, date|
+  @delivery = Factory(:delivery, :name => name, :date => date)
 end
 
 Then /^I should see a "([^"]*)" delivery info$/ do |name|

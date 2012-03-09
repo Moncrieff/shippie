@@ -4,6 +4,7 @@ class DeliveriesController < ApplicationController
                                           :edit,
                                           :update,
                                           :destroy]
+  before_filter :check_expiration, :only => [:show]
   before_filter :authenticate_user!, :except => [:index, :show]
   load_and_authorize_resource :only => [:edit, :new, :create, :destroy]
 
@@ -66,5 +67,11 @@ class DeliveriesController < ApplicationController
     rescue ActiveRecord::RecordNotFound
     flash[:alert] = "The delivery you were looking for could not be found."
     redirect_to deliveries_path
+  end
+
+  def check_expiration
+    if Date.today > @delivery.date
+      @delivery.update_attributes(:expired => true)
+    end
   end
 end

@@ -25,3 +25,7 @@ Given /^there is a bid for "([^"]*)" created by "([^"]*)"$/ do |delivery, user|
   @user = User.find_by_email(user)
   @bid = Factory(:bid, :delivery_id => @delivery.id, :user_id => @user.id)
 end
+
+When /^I accept bid (\d+)$/ do |price|
+  @bid = Bid.find_by_price(price)
+end

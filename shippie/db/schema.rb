@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226134913) do
+ActiveRecord::Schema.define(:version => 20120306035206) do
 
   create_table "bids", :force => true do |t|
     t.integer  "price"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120226134913) do
     t.date     "date"
     t.text     "description"
     t.integer  "user_id"
+    t.boolean  "expired",      :default => false
   end
 
   create_table "users", :force => true do |t|

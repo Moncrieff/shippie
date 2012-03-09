@@ -4,13 +4,14 @@ Feature: Ageing deliveries
   I want to be able to see, which deliveries are expired
 
   Background:
-    Given I am on the homepage
-
+    Given there is a delivery called "Unexpired delivery"
+    And there is a delivery called "Old delivery" with expiration date "01/01/2009"
+    And I am on the homepage
 
   Scenario: Viewing unexpired delivery
-    When there is an unexpired delivery
-    Then I should see "Unexpired"
+    When I follow "Unexpired delivery"
+    Then I should not see "Expired"
 
   Scenario: Viewing expired delivery
-    When there is an expired delivery
+    When I follow "Old delivery"
     Then I should see "Expired"

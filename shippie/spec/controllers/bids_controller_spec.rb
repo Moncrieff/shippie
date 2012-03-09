@@ -9,6 +9,12 @@ describe BidsController do
     customer
   end
 
+  let(:transporter) do
+    transporter = Factory(:user, :role => 'transporter')
+    transporter.confirm!
+    transporter
+  end
+
   let(:delivery) do
     delivery = Factory(:delivery)
   end
@@ -36,6 +42,27 @@ describe BidsController do
       post :create, { :delivery_id => delivery.id, :id => bid.id }
       cannot_act_on_bids!
     end
+  end
+
+
+  context "transporters" do
+
+    it "cannot begin to create new bid on expired delivery" do
+      sign_in(:user, transporter)
+      delivery.expired = true
+      delivery.save
+      get :new, { :delivery_id => delivery.id, :id => bid.id }
+      cannot_act_on_bids!
+    end
+
+    it "cannot create new bid on expired delivery" do
+      sign_in(:user, transporter)
+      delivery.expired = true
+      delivery.save
+      post :create, { :delivery_id => delivery.id, :id => bid.id }
+      cannot_act_on_bids!
+    end
+
   end
 
 end

@@ -6,7 +6,9 @@ class Ability
 
     if user.role? :transporter
       can :read, :all
-      can :create, Bid
+      can :create_bid_for_delivery, Delivery do |delivery|
+        !delivery.expired?
+      end
     end
 
     if user.role? :customer

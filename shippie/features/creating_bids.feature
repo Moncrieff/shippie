@@ -9,6 +9,7 @@ Feature: Creating bids
       | user@shippie.com | password | transporter |
     And I am signed in as them
     And there is a delivery called "Furniture"
+    And there is a delivery called "Old delivery" with expiration date "01/01/2009"
     And I am on the homepage
 
   Scenario: Creating a bid
@@ -31,4 +32,8 @@ Feature: Creating bids
       | customer@shippie.com | password | customer |
     And I am signed in as them
     When I follow "Furniture"
+    Then I should not see "New Bid"
+
+  Scenario: No user can see "New Bid" link for expired delivery
+    When I follow "Old delivery"
     Then I should not see "New Bid"
