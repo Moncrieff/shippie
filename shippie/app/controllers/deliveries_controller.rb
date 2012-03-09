@@ -7,6 +7,9 @@ class DeliveriesController < ApplicationController
   before_filter :check_expiration, :only => [:show]
   before_filter :authenticate_user!, :except => [:index, :show]
   load_and_authorize_resource :only => [:edit, :new, :create, :destroy]
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to deliveries_path, :alert => exception.message
+  end
 
   def index
     @deliveries = Delivery.includes(:bids).all

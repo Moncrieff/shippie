@@ -16,6 +16,7 @@ class Ability
       can :update, Delivery, :user_id => user.id
       can :create, Delivery
       can :destroy, Delivery, :user_id => user.id
+      can :accept_bids, Delivery, :user_id => user.id
     end
   end
 end

@@ -3,9 +3,10 @@ Shippie::Application.routes.draw do
 
   root :to => "deliveries#index"
   resources :deliveries do
-    resources :bids
+    resources :bids 
   end
 
+  match 'deliveries/:delivery_id/bids/:id/accept' => 'bids#accept', :as => 'accept_bid'
   resources :users
 
   #resources :users

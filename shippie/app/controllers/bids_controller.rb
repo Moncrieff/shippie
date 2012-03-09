@@ -1,11 +1,11 @@
 class BidsController < ApplicationController
   before_filter :find_delivery
-  before_filter :find_bid, :only => [:show,
-                                     :edit,
-                                     :update,
-                                     :destroy]
+  before_filter :find_bid, :only => [:accept]
   before_filter :authenticate_user!
-  #load_and_authorize_resource :only => [:create]
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to delivery_path(@delivery), :alert => exception.message
+  end
+
   def new
     authorize! :create_bid_for_delivery, @delivery
       @bid = @delivery.bids.build
@@ -23,6 +23,13 @@ class BidsController < ApplicationController
     end
   end
 
+  def accept
+    authorize! :accept_bids, @delivery, :message => "You are not allowed to accept bids."
+    @bid.update_attributes(:accepted => true)
+    @delivery.update_attributes(:accepted => true)
+    flash[:notice] = "You've accepted the bid."
+    redirect_to @delivery
+  end
 
   private
 
