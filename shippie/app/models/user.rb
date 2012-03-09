@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role
-  has_many :deliveries, :dependent => :destroy
 
   def role?(role)
     self.role == role.to_s
