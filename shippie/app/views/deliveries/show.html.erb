@@ -1,6 +1,6 @@
 <h2><%= @delivery.name %></h2>
 <% if @delivery.expired? %>
-  Expired
+  <span class="label label-important">Expired</span>
 <% end %>
 
 <% if can? :update, @delivery %>
