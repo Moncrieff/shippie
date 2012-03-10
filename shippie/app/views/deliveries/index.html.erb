@@ -1,6 +1,6 @@
 <% #if current_user.try(:role) == "customer" %>
 <% if can? :create, Delivery %>
-  <%= link_to "New delivery", new_delivery_path %>
+  <%= link_to "New delivery", new_delivery_path, :class => 'btn-success' %>
 <% end %>
 
 <h2>Deliveries</h2>
