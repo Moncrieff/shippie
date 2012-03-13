@@ -9,6 +9,9 @@ class Ability
       can :create_bid_for_delivery, Delivery do |delivery|
         !delivery.expired?
       end
+      can :bid_on_deliveries, Delivery do |delivery|
+        !delivery.accepted?
+      end
     end
 
     if user.role? :customer

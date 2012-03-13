@@ -86,7 +86,13 @@ Then /^I should see list of deliveries with fields$/ do
 end
 
 Given /^there is a delivery called "([^"]*)" with expiration date "([^"]*)"$/ do |name, date|
-  @delivery = Factory(:delivery, :name => name, :date => date)
+  @expired_delivery = Factory(:delivery, :name => name, :date => date, :expired => true)
+  #@delivery.expired = true
+  #@delivery.save
+end
+
+Given /^there is an accepted delivery "([^"]*)"$/ do |name|
+  @delivery = Factory(:delivery, :name => name, :accepted => true)
 end
 
 Then /^I should see a "([^"]*)" delivery info$/ do |name|

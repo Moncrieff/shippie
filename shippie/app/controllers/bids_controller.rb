@@ -8,11 +8,13 @@ class BidsController < ApplicationController
 
   def new
     authorize! :create_bid_for_delivery, @delivery
+    authorize! :bid_on_deliveries, @delivery
       @bid = @delivery.bids.build
   end
 
   def create
     authorize! :create_bid_for_delivery, @delivery
+    authorize! :bid_on_deliveries, @delivery
     @bid = @delivery.bids.build(params[:bid].try(:merge!, :user => current_user))
     if @bid.save
       flash[:notice] = "Bid has been created."

@@ -10,6 +10,7 @@ Feature: Creating bids
     And I am signed in as them
     And there is a delivery called "Furniture"
     And there is a delivery called "Old delivery" with expiration date "01/01/2009"
+    And there is an accepted delivery "Useless delivery"
     And I am on the homepage
 
   Scenario: Creating a bid
@@ -36,4 +37,8 @@ Feature: Creating bids
 
   Scenario: No user can see "New Bid" link for expired delivery
     When I follow "Old delivery"
+    Then I should not see "New Bid"
+
+  Scenario: No user can see "New Bid" link for accepted delivery
+    When I follow "Useless delivery"
     Then I should not see "New Bid"

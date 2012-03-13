@@ -73,6 +73,20 @@ describe BidsController do
       cannot_act_on_bids!
     end
 
+    it "cannot begin to create new bid on accepted delivery" do
+      delivery.accepted = true
+      delivery.save
+      get :new, { :delivery_id => delivery.id, :id => bid.id }
+      cannot_act_on_bids!
+    end
+
+    it "cannot create new bid on accepted delivery" do
+      delivery.accepted = true
+      delivery.save
+      post :create, { :delivery_id => delivery.id, :id => bid.id }
+      cannot_act_on_bids!
+    end
+
     it "cannot accept bids" do
       put :accept, { :delivery_id => delivery.id, :id => bid.id }
       response.should redirect_to(delivery)
