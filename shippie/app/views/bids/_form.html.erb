@@ -1,8 +1,5 @@
-<%= form_for [@delivery, @bid] do |f| %>
+<%= simple_form_for [@delivery, @bid] do |f| %>
   <%= f.error_messages %>
-  <p>
-  <%= f.label :price %><br>
-  <%= f.text_field :price %>
-  </p>
-  <%= f.submit %>
+  <%= f.input :price %>
+  <%= f.button :submit, :value => "Bid" %>
 <% end %>

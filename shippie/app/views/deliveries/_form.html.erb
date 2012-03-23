@@ -1,29 +1,15 @@
-<%= form_for(@delivery) do |f| %>
-  <p>
+<%= simple_form_for @delivery do |f| %>
   <%= f.error_messages %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :from_city, 'From City' %>
-  <%= f.text_field :from_city %>
-  <%= f.label :from_address, 'From Address' %>
-  <%= f.text_field :from_address %>
-  <%= f.label :to_city, 'To City' %>
-  <%= f.text_field :to_city %>
-  <%= f.label :to_address, 'To Address' %>
-  <%= f.text_field :to_address %>
-  <%= f.label :date, 'Deliver by:' %>
-  <%= f.date_select :date %>
-  <%= f.label :weight %>
-  <%= f.text_field :weight %>
-  <%= f.label :length %>
-  <%= f.text_field :length %>
-  <%= f.label :height %>
-  <%= f.text_field :height %>
-  <%= f.label :wideness %>
-  <%= f.text_field :wideness %>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  </p>
-  <%= f.submit %>
+  <%= f.input :name %>
+  <%= f.input :from_city, :label => 'From City' %>
+  <%= f.input :from_address, :label => 'From Address' %>
+  <%= f.input :to_city, :label => 'To City' %>
+  <%= f.input :to_address, :label => 'To Address' %>
+  <%= f.input :date, :as => :date, :label => 'Deliver by:' %>
+  <%= f.input :weight %>
+  <%= f.input :length %>
+  <%= f.input :height %>
+  <%= f.input :wideness %>
+  <%= f.input :description %>
+  <%= f.button :submit %>
 <% end %>
-
