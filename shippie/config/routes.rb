@@ -4,6 +4,7 @@ Shippie::Application.routes.draw do
   root :to => "deliveries#index"
   resources :deliveries do
     resources :bids, :except => [:edit, :update, :destroy, :index, :show]
+    resources :comments
   end
 
   match 'deliveries/:delivery_id/bids/:id/accept' => 'bids#accept', :as => 'accept_bid'
