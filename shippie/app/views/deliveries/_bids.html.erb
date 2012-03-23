@@ -1,0 +1,17 @@
+<p>Bids<br>
+<ul id='bids'>
+  <% @delivery.bids.each do |bid| %>
+    <li>
+    <%= bid.price %><small> by <%= link_to "#{bid.user.email}", user_path(bid.user) %></small> 
+    <% if bid.accepted == true %>
+      <span class='label label-info'>Bid taken</span>
+    <% end %>
+    <% if can? :accept_bids, @delivery %>
+      <% if @delivery.accepted == nil %>
+        <%= link_to 'Accept', accept_bid_path(@delivery, bid), :method => :put, :class => 'btn-success' %>
+      <% end %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+</p>

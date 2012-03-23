@@ -1,0 +1,6 @@
+<p>Comments:</br>
+<%= link_to "New Comment", new_delivery_comment_path(@delivery), :class => 'btn-success' %></br>
+<% @delivery.comments.each do |comment| %>
+  <%= comment.text %> by <%= comment.user.email %></br>
+<% end %>
+</p>
