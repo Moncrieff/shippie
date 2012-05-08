@@ -8,6 +8,7 @@ end
 
 When /^I create new delivery$/ do
   fill_in('Name', :with => "Some stuff")
+  select('Furniture', :from => 'Category')
   fill_in('Weight', :with => "24")
   fill_in('Length', :with => "120")
   fill_in('Height', :with => "80")
@@ -75,14 +76,14 @@ Then /^I should see list of deliveries with fields$/ do
   page.should have_content('From')
   page.should have_content('To')
   page.should have_content('Date due')
-  page.should have_content('Bids')
+  page.should have_content('Category')
   page.should have_content(@delivery.name)
   page.should have_content(@delivery.from_city)
   page.should have_content(@delivery.from_address)
   page.should have_content(@delivery.to_city)
   page.should have_content(@delivery.to_address)
   page.should have_content(@delivery.date)
-  page.should have_content(@delivery.bids.count)
+  page.should have_content(@delivery.category)
 end
 
 Given /^there is a delivery called "([^"]*)" with expiration date "([^"]*)"$/ do |name, date|
@@ -103,6 +104,7 @@ Then /^I should see a "([^"]*)" delivery info$/ do |name|
   page.should have_content("To address")
   page.should have_content("Date due")
   page.should have_content("Bids")
+  page.should have_content("Category")
 end
 
 #Given /^"([^"]*)" can edit "([^"]*)" delivery$/ do |user, delivery|

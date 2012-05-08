@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'cancan/matchers'
+include Devise::TestHelpers
 
 describe DeliveriesController do
   let(:transporter) do

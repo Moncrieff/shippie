@@ -22,11 +22,6 @@ Feature: Creating deliveries
     Then I should see "Delivery has not been created."
     And I should see "Name can't be blank"
   
-  Scenario: Creating a delivery without mandatory fields filled
-    When I follow "New delivery"
-    And I create new delivery without mandatory fields filled
-    Then I should see "Delivery has not been created."
-
   Scenario: New Delivery link should be invisible for transporters
     When I sign out
     And there are the following users:

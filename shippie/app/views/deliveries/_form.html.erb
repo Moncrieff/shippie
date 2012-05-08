@@ -3,6 +3,8 @@
   <%= f.error_messages %>
   <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= f.label :category, 'Category' %>
+  <%= f.collection_select :category, Delivery::CATEGORIES, :to_s, :capitalize %>
   <%= f.label :from_city, 'From City' %>
   <%= f.text_field :from_city %>
   <%= f.label :from_address, 'From Address' %>
