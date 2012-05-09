@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Shippie</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -11,6 +11,7 @@
 
   <% flash.each do |name, msg| %>
     <div class='alert alert-<%= name == :notice ? "success" : "error" %>'>
+      <a class='close' data dismiss="alert">x</a>
       <%= msg %>
     </div>
   <% end %>

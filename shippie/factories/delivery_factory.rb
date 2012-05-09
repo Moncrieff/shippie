@@ -5,4 +5,5 @@ Factory.define :delivery do |delivery|
   delivery.to_city "Akhtubinsk"
   delivery.to_address "Lenina, 23"
   delivery.date "24/07/2012"
+  delivery.category "Furniture"
 end

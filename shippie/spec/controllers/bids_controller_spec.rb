@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'cancan/matchers'
+include Devise::TestHelpers
 
 describe BidsController do
 
