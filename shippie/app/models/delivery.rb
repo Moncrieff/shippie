@@ -8,5 +8,5 @@ class Delivery < ActiveRecord::Base
   has_many :bids, :dependent => :delete_all
   has_many :comments, :dependent => :delete_all
 
-  CATEGORIES = %w[furniture electronics other]
+  CATEGORIES = %w[Furniture Electronics Other]
 end

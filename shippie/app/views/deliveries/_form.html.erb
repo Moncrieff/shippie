@@ -1,5 +1,6 @@
 <%= simple_form_for @delivery do |f| %>
   <%= f.error_messages %>
+  <%= f.input :category, :collection => Delivery::CATEGORIES %>
   <%= f.input :name %>
   <%= f.input :from_city, :label => 'From City' %>
   <%= f.input :from_address, :label => 'From Address' %>
